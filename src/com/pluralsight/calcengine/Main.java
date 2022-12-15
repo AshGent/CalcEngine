@@ -24,6 +24,7 @@ public class Main {
             equation.execute();
             System.out.println("Result = " + equation.getResult());
         }
+        System.out.println("Average result = " + MathEquation.getAverageResult());
     }
 
     static void executeInteractively() {

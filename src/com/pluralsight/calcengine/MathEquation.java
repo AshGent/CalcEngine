@@ -6,6 +6,9 @@ public class MathEquation {
     private char opCode;
     private double result;
 
+    private static int numberOfCalculations;
+    private static double sumOfResults;
+
     public MathEquation() {}
 
     public MathEquation(char opCode) {
@@ -26,6 +29,12 @@ public class MathEquation {
             case 'd' -> this.setResult(rightVal != 0 ? leftVal / rightVal : 0.0d);
             default -> this.setResult(0.0d);
         }
+        numberOfCalculations++;
+        sumOfResults += this.getResult();
+    }
+
+    public static double getAverageResult() {
+        return sumOfResults / numberOfCalculations;
     }
 
     public double getLeftVal() {
