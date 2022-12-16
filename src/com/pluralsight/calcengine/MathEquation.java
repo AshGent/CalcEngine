@@ -47,6 +47,32 @@ public class MathEquation {
         result = (int)result;
     }
 
+    public char symbolFromOpCode() {
+        char[] opCodes = {'a', 's', 'd', 'm'};
+        char[] symbols = {'+', '-', '/', '*'};
+        char symbol = ' ';
+        for(int i = 0; i < opCodes.length; i++){
+            if(opCode == opCodes[i]){
+                symbol  = symbols[i];
+                break;
+            }
+        }
+        return symbol;
+    }
+
+    public String toString() {
+        char symbol = symbolFromOpCode();
+        StringBuilder builder = new StringBuilder(20);
+        builder.append(leftVal);
+        builder.append(" ");
+        builder.append(symbol);
+        builder.append(" ");
+        builder.append(rightVal);
+        builder.append(" = ");
+        builder.append(result);
+        return builder.toString();
+    }
+
     public static double getAverageResult() {
         return sumOfResults / numberOfCalculations;
     }

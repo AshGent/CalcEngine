@@ -22,12 +22,11 @@ public class Main {
 
         for(MathEquation equation : equations) {
             equation.execute();
-            System.out.println("Result = " + equation.getResult());
+            System.out.println(equation); // will call Object method `toString()`
         }
         System.out.println("Average result = " + MathEquation.getAverageResult());
 
         useOverloads();
-
     }
 
     static void useOverloads() {
@@ -39,13 +38,12 @@ public class Main {
         double leftDouble = 9.0d;
         double rightDouble = 4.0d;
         equationOverload.execute(leftDouble, rightDouble);
-        System.out.println("Overload result with doubles: " + equationOverload.getResult());
+        System.out.println("Overload result with doubles: " + equationOverload);
 
         int leftInt = 9;
         int rightInt = 4;
         equationOverload.execute(leftInt, rightInt);
-        System.out.println("Overload result with ints: " + equationOverload.getResult());
-
+        System.out.println("Overload result with ints: " + equationOverload);
     }
 
     static void executeInteractively() {
@@ -62,21 +60,7 @@ public class Main {
         equation.setLeftVal(valueFromWord(parts[1]));
         equation.setRightVal(valueFromWord(parts[2]));
         equation.execute();
-        displayResult(equation.getOpCode(), equation.getLeftVal(), equation.getRightVal(), equation.getRightVal());
-    }
-
-    private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
-        char symbol = symbolFromOpCode(opCode);
-        StringBuilder builder = new StringBuilder(20);
-        builder.append(leftVal);
-        builder.append(" ");
-        builder.append(symbol);
-        builder.append(" ");
-        builder.append(rightVal);
-        builder.append(" = ");
-        builder.append(result);
-        String output = builder.toString();
-        System.out.println(output);
+        System.out.println(equation);
     }
 
     private static void handleCommandLine(String[] args) {
@@ -85,12 +69,11 @@ public class Main {
         equation.setLeftVal(Double.parseDouble(args[1]));
         equation.setRightVal(Double.parseDouble(args[2]));
         equation.execute();
-        displayResult(equation.getOpCode(), equation.getLeftVal(), equation.getRightVal(), equation.getResult());
+        System.out.println(equation);
     }
 
     static char opCodeFromString(String operationName) {
-        char opCode = operationName.charAt(0);
-        return opCode;
+        return operationName.charAt(0);
     }
 
     static double valueFromWord(String word) {
@@ -106,18 +89,5 @@ public class Main {
             }
         }
         return value;
-    }
-
-    private static char symbolFromOpCode(char opCode) {
-        char[] opCodes = {'a', 's', 'd', 'm'};
-        char[] symbols = {'+', '-', '/', '*'};
-        char symbol = ' ';
-        for(int i = 0; i < opCodes.length; i++){
-            if(opCode == opCodes[i]){
-                symbol  = symbols[i];
-                break;
-            }
-        }
-        return symbol;
     }
 }
