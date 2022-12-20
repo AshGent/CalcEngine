@@ -55,10 +55,10 @@ public class Main {
     }
 
     private static void performOperation(String[] parts) {
-        MathEquation equation = new MathEquation();
-        equation.setOpCode(opCodeFromString(parts[0]));
-        equation.setLeftVal(valueFromWord(parts[1]));
-        equation.setRightVal(valueFromWord(parts[2]));
+        char opCode = opCodeFromString(parts[0]);
+        double leftVal = valueFromWord(parts[1]);
+        double rightVal = valueFromWord(parts[2]);
+        MathEquation equation = new MathEquation(opCode, leftVal, rightVal);
         equation.execute();
         System.out.println(equation);
     }
@@ -81,13 +81,17 @@ public class Main {
                 "zero", "one", "two", "three", "four", "five",
                 "six", "seven", "eight", "nine"
         };
+        boolean isValueSet = false;
         double value = 0d;
         for(int index = 0; index < numberWords.length; index++){
             if(word.equals(numberWords[index])) {
                 value = index;
+                isValueSet = true;
                 break;
             }
         }
+        if(!isValueSet)
+            value = Double.parseDouble(word);
         return value;
     }
 }
